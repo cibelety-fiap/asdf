@@ -28,21 +28,21 @@ public class Cliente {
 	@Column(name = "cd_cliente")
 	private int codigo;
 
-	@Column(name = "nm_cliente")
+	@Column(name = "nm_cliente", nullable = false, length = 100)
 	private String nome;
 
 	@Column(name = "dt_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Calendar dataNascimento;
 
-	@Column(name = "nr_cpf")
+	@Column(name = "nr_cpf", length = 14)
 	private String cpf;
 
-	@Column(name = "ds_genero")
+	@Column(name = "ds_genero", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
-	@Column(name = "dt_cadastro")
+	@Column(name = "dt_cadastro", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Calendar dataCadastro;
@@ -55,7 +55,7 @@ public class Cliente {
 	private boolean vip;
 
 	@Transient
-	private String numeroCartao;
+	private long numeroCartao;
 
 	public Cliente() {
 		super();
@@ -71,18 +71,18 @@ public class Cliente {
 		this.vip = vip;
 	}
 
-	public Cliente(int codigo, String nome, Calendar dataNascimento, String cpf, Genero genero, Calendar dataCadastro,
-			byte[] foto, boolean vip, String numeroCartao) {
+
+
+	public Cliente(int codigo, String nome, Calendar dataNascimento, String cpf, Genero genero, byte[] foto,
+			boolean vip) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.genero = genero;
-		this.dataCadastro = dataCadastro;
 		this.foto = foto;
 		this.vip = vip;
-		this.numeroCartao = numeroCartao;
 	}
 
 	public int getCodigo() {
@@ -149,11 +149,11 @@ public class Cliente {
 		this.vip = vip;
 	}
 
-	public String getNumeroCartao() {
+	public long getNumeroCartao() {
 		return numeroCartao;
 	}
 
-	public void setNumeroCartao(String numeroCartao) {
+	public void setNumeroCartao(long numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 
